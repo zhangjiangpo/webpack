@@ -1,0 +1,33 @@
+/*变量*/
+@blue: #00c;
+@light_blue : @blue + #333;
+
+.blue{
+	background-color: @blue;
+}
+.light_blue{
+	background-color: @light_blue;
+}
+
+/*混合*/
+.padding-com{
+	height:100px;
+	width:100px;
+	border:1px solid @blue;
+	padding:10px 20px;
+}
+
+.title1{
+	margin:10px;
+	.padding-com;
+	.head{
+		color:red;
+	}
+}
+.title2{
+	margin:20px;
+	.padding-com;
+	.head{
+		color:green;
+	}
+}
