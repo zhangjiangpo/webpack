@@ -2,7 +2,7 @@ var path = require('path');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractLess = new ExtractTextPlugin("css/[name].[contenthash].css");
+const extractLess = new ExtractTextPlugin("css/[name].css?v=[contenthash]");
 const htmlplugin = new HtmlWebpackPlugin({
                 inject:'body',
                 template: './static/index.html',
@@ -14,7 +14,7 @@ const htmlplugin = new HtmlWebpackPlugin({
 var config = {
 	entry:{'index':'./static/index.js'},
 	output:{
-		filename:'js/[name].js',
+		filename:'js/[name].js?v=[hash]',
 		path: path.join(__dirname, 'public'),
         publicPath: "../",
 	},
@@ -28,9 +28,13 @@ var config = {
 	module:{
 		rules : [{
 			test:/\.js$/,
-			use:[{
+			loader : 'babel-loader', 
+            options : {
+                presets : [["es2015"],['env']]
+            } 
+			/*use:[{
 				loader:'babel-loader'
-			}]
+			}]*/
 		},{ 
 			test: /\.less$/, 
 			use : ExtractTextPlugin.extract({

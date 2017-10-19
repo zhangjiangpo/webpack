@@ -6,5 +6,6 @@ var a = (c) => {
 }
 
 a('asdf');
+a('asdf');
 
-console.log($);
+//console.log($);
